@@ -9,6 +9,7 @@ const {
   controlRegister,
   generateBST,
   binarySearch,
+  countArray,
 } = require("../checkpoint");
 
 describe("Practica del Checkpoint M1", function () {
@@ -263,4 +264,15 @@ describe("Practica del Checkpoint M1", function () {
       expect(binarySearch([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 11)).to.equal(-1);
     });
   });
+  describe('EJERCICIO 10: countArray', () => {
+    it("debe determinar la suma de todos los números contenidos en el array.", () => {
+        expect(countArray([1,1,1,1,1,1,1,1,1,1])).to.equal(10)
+    })
+    it("debe determinar la suma de todos los números incluso si existen arrays anidados.", () => {
+        expect(countArray([1, [2, [3,4]], [5,6], 7])).to.equal(28)
+    })
+    it("debe determinar la suma de todos los números incluso si existen mas arrays anidados.", () => {
+        expect(countArray([1, [2, [3,[4,4,4]]], [5,6], 7])).to.equal(36)
+    })
+})
 });

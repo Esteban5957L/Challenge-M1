@@ -336,6 +336,25 @@ var binarySearch = function (
       }
     }
   };
+
+// EJERCICIO 10
+// Implementar la función countArray: a partir de un array en el cual cada posición puede ser un único
+// número u otro array anidado de números, determinar la suma de todos los números contenidos en el array.
+// El array será recibido por parámetro.
+// Ejemplo:
+//    const array = [1, [2, [3,4]], [5,6], 7]; 
+//    countArray(array); --> Debería devolver 28 (1 + 2 + 3 + 4 + 5 + 6 + 7)
+// Pista: utilizar el método Array.isArray() para determinar si algun elemento de array es un array anidado
+// [Para más información del método: https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Array/isArray]
+var countArray = function(array) {
+    let arraySinAnidar = array.flat(Infinity);
+    let suma = 0;
+    for (let i = 0; i < arraySinAnidar.length; i++) {
+      suma = suma + arraySinAnidar[i];
+    }
+    return suma;
+  }; 
+
 // ----------------------
 
 module.exports = {
@@ -347,4 +366,5 @@ module.exports = {
   controlRegister,
   generateBST,
   binarySearch,
+  countArray
 };
