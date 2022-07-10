@@ -32,7 +32,6 @@ const { Queue, LinkedList, Node, BinarySearchTree } = require("./DS.js");
 // < '00:52:30'
 
 function closureConvertir(sep) {
-  /* Tu codigo aqui */
   return function (seg) {
     var hours = Math.floor(seg / 3600);
     var minutes = Math.floor((seg % 3600) / 60);
@@ -48,6 +47,41 @@ function closureConvertir(sep) {
 }
 
 // EJERCICIO 2
+//Determinar si los ingredientes esta en un trago(bebida)
+// Implementar la funcion 'closureTragos' que recibe un parametro
+// - 'suppliers' que es un arreglo con los ingredientes para poder preparar un trago(bebida)
+// y retorna una funcion, nos referiremos a esta ultima como funcion hija,
+// y a 'closureConvertir' como la funcion padre.
+// la funcion hija debe recibir un array de ingredientes que tiene una persona y debe devolver:
+// -> true: si esos ingredientes coinciden con el trago (si se ingresa un solo ingrediente y coincide devolvera true)
+// -> false: si alguno de esos ingredientes no coinciden con el trago
+// el formato de salida es de un Booleano
+
+// EJEMPLO:
+//const trago = closureTragos(["agua", "vodka", "naranja", "Hielo"]);
+
+//trago(["vodka", "naranja"]));
+//>True
+
+//trago(["fernet", "cola"]));
+//>False
+
+//trago(["AGUA", "cola"]));
+//>False
+
+function closureTragos(suppliers) {
+  suppliers = suppliers.map((s) => s.toLowerCase());
+  return function (ingredients) {
+    for (let ing of ingredients.map((i) => i.toLowerCase())) {
+      if (!suppliers.includes(ing)) return false;
+    }
+    return true;
+  };
+}
+
+// ----------------------
+
+// EJERCICIO 3
 // ----- Recursión -----
 // Crea la funcion 'formatted':
 
@@ -58,9 +92,9 @@ function closureConvertir(sep) {
 //Cada grupo debe contener exactamente `n` caracteres excepto el primero, que puede contener menos de `n` caracteres para dar cuenta de cualquier resto.
 
 // Ejemplos:
-//formatted(4-3t-0-u,2) => 4-3t-0u
-//formatted(3h5n-8v-7-m,4) => 3h5n-8v7m
-//formatted(j-45i9ut5-34f-x10,5) => j45i-9ut53-4fx10
+//formatted(4-3t-0-u, 2) => 4-3t-0u
+//formatted(3h5n-8v-7-m, 4) => 3h5n-8v7m
+//formatted(j-45i9ut5-34f-x10, 5) => j45i-9ut53-4fx10
 
 function formatted(str, n) {
   let x = str.replace(/-/g, "");
@@ -75,7 +109,7 @@ function formatted(str, n) {
 
 // ----- LinkedList -----
 
-// EJERCICIO 3
+// EJERCICIO 4
 // Implementar el método size dentro del prototype de LinkedList que deberá retornar el tamaño actual de
 // la LinkedList. En el caso de que la lista se encuentre vacía deberá retornar cero.
 // Ejemplo:
@@ -103,7 +137,7 @@ LinkedList.prototype.size = function () {
   return cont;
 };
 
-// EJERCICIO 4
+// EJERCICIO 5
 // Implementar el método addInPos dentro del prototype de LinkedList que deberá agregar un elemento en
 // la posición indicada. Ambos datos serán brindados como parámetro (pos, value). Donde "pos" será la
 // posición en la cual se deberá agregar el valor "value". En el caso de que la posición en la que se
@@ -144,12 +178,7 @@ LinkedList.prototype.addInPos = function (pos, value) {
   return false;
 };
 
-/*let lista = new LinkedList();
-  lista.add(1)
-  lista.add(2)
-  lista.addInPos(2,3);*/
-
-// EJERCICIO 5
+// EJERCICIO 6
 // Implementar el método removeFromPos dentro del prototype de LinkedList que deberá remover un elemento de
 // la posición indicada ("pos" será la posición del elemento a remover).
 // En el caso de que la posición en la que se quiera hacer el remove no sea válida (Supere el tamaño de
@@ -191,7 +220,7 @@ LinkedList.prototype.removeFromPos = function (pos) {
 
 // ----- QUEUE -----
 
-// EJERCICIO 6
+// EJERCICIO 7
 // Implementar la función controlRegister: a partir de una Queue que va a recibir como paráemtro que tiene
 // en cada posición un objeto que va a representar a una persona y tiene la siguiente forma:
 // {
@@ -254,10 +283,9 @@ var controlRegister = function (queue, tipoUser) {
   return admitidos;
 };
 
-// ---------------
 // ----- BST -----
 
-// EJERCICIO 7
+// EJERCICIO 8
 // Implementar la función generateBST para que a partir de un array recibido como parametro
 // genere un BinarySearchTree. Devolver dicho arbol generado.
 // Ejemplo:
@@ -279,14 +307,44 @@ var generateBST = function (array) {
   return arb;
 };
 
+// EJERCICIO 9
+// Dado un arreglo ordenado, encontrar el índice de un elemento específico pasado como parámetro
+// utilizando el método conocido como búsqueda binaria. En el caso de que el número buscado no se encuentre
+// en el array devolver -1.
+// Ejemplo:
+//    array = [1,2,3,4,5,6,7,8,9,10];
+//    binarySearch(array, 2) -> Devolvería 1 ya que array[1] = 2
 
+
+var binarySearch = function (
+    array,
+    elemento,
+    inicio = 0,
+    final = array.length - 1
+  ) {
+    let mitad = Math.floor(inicio + final / 2);
+    if (inicio > final) {
+      return -1;
+    }
+    if (array[mitad] === elemento) {
+      return mitad;
+    } else {
+      if (array[mitad] < elemento) {
+        return binarySearch(array, elemento, mitad + 1, final);
+      } else {
+        return binarySearch(array, elemento, inicio, mitad - 1);
+      }
+    }
+  };
 // ----------------------
 
 module.exports = {
   closureConvertir,
+  closureTragos,
   formatted,
   LinkedList,
   Queue,
   controlRegister,
   generateBST,
+  binarySearch,
 };

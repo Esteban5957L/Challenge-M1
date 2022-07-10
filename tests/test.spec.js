@@ -2,11 +2,13 @@ var expect = require("chai").expect;
 
 const {
   closureConvertir,
+  closureTragos,
   formatted,
   LinkedList,
   Queue,
   controlRegister,
   generateBST,
+  binarySearch,
 } = require("../checkpoint");
 
 describe("Practica del Checkpoint M1", function () {
@@ -37,7 +39,21 @@ describe("Practica del Checkpoint M1", function () {
     });
   });
 
-  describe("EJERCICIO 2: formatted", function () {
+  describe("EJERCICIO 2: closureTragos", function () {
+    let fernet = closureTragos(["fernet","cola","hielo"]);
+    it("Una funcion 'Hija' debe estar adentro de una funcion 'Padre'", function () {
+      expect(typeof fernet).to.be.equal("function");
+    });
+    it("Debe devolver True si los ingredientes coinciden con el trago -> Fernet", function () {
+      expect(typeof fernet).to.be.equal("function");
+      expect(fernet(["fernet","cola","hielo"])).to.be.equal(true);
+    });
+    it("Debe devolver False si los ingredientes no coinciden con el trago -> Fernet", function () {
+      expect(typeof fernet).to.be.equal("function");
+      expect(fernet(["fernet","naranja","hielo"])).to.be.equal(false);
+    });
+});
+  describe("EJERCICIO 3: formatted", function () {
     const str = "j-45i9ut5-34f-x10";
     const n = 5;
     it("Debe devolver el strings correspondiente", function () {
@@ -45,7 +61,7 @@ describe("Practica del Checkpoint M1", function () {
     });
   });
 
-  describe("EJERCICIO 3: LinkedList size", function () {
+  describe("EJERCICIO 4: LinkedList size", function () {
     var newList;
 
     beforeEach(function () {
@@ -62,7 +78,7 @@ describe("Practica del Checkpoint M1", function () {
     });
   });
 
-  describe("EJERCICIO 4: LinkedList addInPos ", function () {
+  describe("EJERCICIO 5: LinkedList addInPos ", function () {
     var newList;
 
     beforeEach(function () {
@@ -83,7 +99,7 @@ describe("Practica del Checkpoint M1", function () {
       expect(newList.head.next.next.next.next.next.value).to.equal(6);
     });
   });
-  describe("EJERCICIO 5: LinkedList removeFromPos ", function () {
+  describe("EJERCICIO 6: LinkedList removeFromPos ", function () {
     var newList;
 
     beforeEach(function () {
@@ -105,7 +121,7 @@ describe("Practica del Checkpoint M1", function () {
       expect(newList.head.next.value).to.equal(6);
     });
   });
-  describe("EJERCICIO 6: controlRegister", function () {
+  describe("EJERCICIO 7: controlRegister", function () {
     var queue = new Queue();
 
     queue.enqueue({
@@ -222,7 +238,7 @@ describe("Practica del Checkpoint M1", function () {
       ]);
     });
   });
-  describe("EJERCICIO 7: generateBST", function () {
+  describe("EJERCICIO 8: generateBST", function () {
     it("Debe generar un arbol correctamente a partir de un array", function () {
       var tree = generateBST([15,5,22,1,16,30,13,4]);
       expect(tree.value).to.equal(15);
@@ -233,6 +249,18 @@ describe("Practica del Checkpoint M1", function () {
       expect(tree.right.value).to.equal(22);
       expect(tree.right.left.value).to.equal(16);
       expect(tree.right.right.value).to.equal(30);
+    });
+  });
+  describe("EJERCICIO 9: binarySearch", function () {
+    it("Debe devolver 1 para el arreglo [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] si busca el 2", function () {
+      expect(binarySearch([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 2)).to.equal(1);
+    });
+    it("Debería devolver 4 para el arreglo [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] si busca el 5", function () {
+      expect(binarySearch([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 5)).to.equal(4);
+    });
+  
+    it("Debería devolver -1 si no encuentra el valor buscado en el arreglo", function () {
+      expect(binarySearch([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 11)).to.equal(-1);
     });
   });
 });
