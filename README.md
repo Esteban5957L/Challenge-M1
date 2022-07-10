@@ -9,3 +9,6 @@ _No se frustren si no pueden con tal o cual ejercicio porque está pensado para 
 ## 📋 Instrucciones  
 - Completar el archivo `checkpoint.js` de la misma carpeta
 - Correr los test con el comando `npm test`
+
+
+## Esteban Villalba
