@@ -8,6 +8,7 @@ _No se frustren si no pueden con tal o cual ejercicio porque está pensado para 
 
 ## 📋 Instrucciones  
 - Completar el archivo `checkpoint.js` de la misma carpeta
+- Eliminar las x de la palabra xdescribe del archivo `test.spect.js` para que puedan correr los test
 - Correr los test con el comando `npm test`
 
 
