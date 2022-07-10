@@ -31,20 +31,7 @@ const { Queue, LinkedList, Node, BinarySearchTree } = require("./DS.js");
 // > conv(3123);
 // < '00:52:30'
 
-function closureConvertir(sep) {
-  return function (seg) {
-    var hours = Math.floor(seg / 3600);
-    var minutes = Math.floor((seg % 3600) / 60);
-    var seconds = seg % 60;
-    var result =
-      ("0" + hours).slice(-2) +
-      sep +
-      ("0" + minutes).slice(-2) +
-      sep +
-      ("0" + seconds).slice(-2);
-    return result;
-  };
-}
+function closureConvertir(sep) {}
 
 // EJERCICIO 2
 //Determinar si los ingredientes esta en un trago(bebida)
@@ -69,15 +56,7 @@ function closureConvertir(sep) {
 //trago(["AGUA", "cola"]));
 //>False
 
-function closureTragos(suppliers) {
-  suppliers = suppliers.map((s) => s.toLowerCase());
-  return function (ingredients) {
-    for (let ing of ingredients.map((i) => i.toLowerCase())) {
-      if (!suppliers.includes(ing)) return false;
-    }
-    return true;
-  };
-}
+function closureTragos(suppliers) {}
 
 // ----------------------
 
@@ -96,15 +75,7 @@ function closureTragos(suppliers) {
 //formatted(3h5n-8v-7-m, 4) => 3h5n-8v7m
 //formatted(j-45i9ut5-34f-x10, 5) => j45i-9ut53-4fx10
 
-function formatted(str, n) {
-  let x = str.replace(/-/g, "");
-  if (x.length <= n) return x;
-  return (
-    formatted(x.slice(0, x.length - n), n) +
-    "-" +
-    x.slice(x.length - n, x.length)
-  );
-}
+function formatted(str, n) {}
 // ----------------------
 
 // ----- LinkedList -----
@@ -121,21 +92,7 @@ function formatted(str, n) {
 //    lista.add(3);
 //    lista.size(); --> 3
 
-LinkedList.prototype.size = function () {
-  /* Tu codigo aqui */
-
-  let cont = 1;
-  let save = this.head;
-  if (save === null) {
-    return (cont = 0);
-  }
-  while (save.next !== null) {
-    cont++;
-    save = save.next;
-  }
-
-  return cont;
-};
+LinkedList.prototype.size = function () {};
 
 // EJERCICIO 5
 // Implementar el método addInPos dentro del prototype de LinkedList que deberá agregar un elemento en
@@ -153,30 +110,7 @@ LinkedList.prototype.size = function () {
 //    lista.addInPos(2, 3); --> Debería devolver false ya que no es posible agregar en la posición 2
 //    sin antes tener cargada la posición 0 y 1.
 
-LinkedList.prototype.addInPos = function (pos, value) {
-  /* Tu codigo aqui */
-  let save = this.head;
-  let anterior;
-  let aux;
-
-  if (this.size() < pos) {
-    return false;
-  }
-
-  for (let i = 0; i <= pos; i++) {
-    if (i === pos) {
-      let nodo = new Node(value);
-      aux = save;
-      anterior.next = nodo;
-      nodo.next = aux;
-      return true;
-    }
-    anterior = save;
-    save = save.next;
-  }
-
-  return false;
-};
+LinkedList.prototype.addInPos = function (pos, value) {};
 
 // EJERCICIO 6
 // Implementar el método removeFromPos dentro del prototype de LinkedList que deberá remover un elemento de
@@ -192,31 +126,7 @@ LinkedList.prototype.addInPos = function (pos, value) {
 // Ejemplo 2:
 //    Suponiendo que se pide una posición inválida: removeFromPos(8) --> false
 
-LinkedList.prototype.removeFromPos = function (pos) {
-  // Tu código aca:
-  let save = this.head;
-  let anterior;
-  let removido;
-  if (this.size() < pos || pos < 0) {
-    return false;
-  }
-  if (pos === 0) {
-    removido = this.head.value;
-    this.head = save.next;
-    return removido;
-  }
-
-  for (let i = 0; i <= pos; i++) {
-    if (i === pos) {
-      removido = save.value;
-      anterior.next = save.next;
-      save = null;
-      return removido;
-    }
-    anterior = save;
-    save = save.next;
-  }
-};
+LinkedList.prototype.removeFromPos = function (pos) {};
 
 // ----- QUEUE -----
 
@@ -240,48 +150,7 @@ LinkedList.prototype.removeFromPos = function (pos) {
 // Finalmente la función debe devolver un arreglo con todos los nombres de las personas que pudieron ingresar
 // Importante!: Aquellas personas que no cumplan con los requisitos para ingresar deben ser removidos de la cola
 
-function edad(obj) {
-  if (obj.age >= 18) {
-    return true;
-  } else return false;
-}
-
-function data(obj, tipoUser) {
-  if (obj.data.tipoUser === tipoUser) {
-    return true;
-  } else return false;
-}
-
-function numero(obj, num) {
-  if (num.length === 0) {
-    return false;
-  } else {
-    for (let i = 0; i < num.length; i++) {
-      if (num[i] === obj.data.telefono) {
-        return true;
-      }
-    }
-
-    return false;
-  }
-}
-
-var controlRegister = function (queue, tipoUser) {
-  // Tu código aca:
-  let admitidos = [];
-  let num = [];
-  let obj = {};
-
-  while (queue.size() !== 0) {
-    obj = queue.dequeue();
-
-    if (edad(obj) && data(obj, tipoUser) && numero(obj, num) === false) {
-      num.push(obj.data.telefono);
-      admitidos.push(obj.fullname);
-    }
-  }
-  return admitidos;
-};
+var controlRegister = function (queue, tipoUser) {};
 
 // ----- BST -----
 
@@ -299,13 +168,7 @@ var controlRegister = function (queue, tipoUser) {
 //      \
 //       4
 
-var generateBST = function (array) {
-  let arb = new BinarySearchTree(array[0]);
-  for (let i = 1; i < array.length; i++) {
-    arb.insert(array[i]);
-  }
-  return arb;
-};
+var generateBST = function (array) {};
 
 // EJERCICIO 9
 // Dado un arreglo ordenado, encontrar el índice de un elemento específico pasado como parámetro
@@ -316,26 +179,7 @@ var generateBST = function (array) {
 //    binarySearch(array, 2) -> Devolvería 1 ya que array[1] = 2
 
 
-var binarySearch = function (
-    array,
-    elemento,
-    inicio = 0,
-    final = array.length - 1
-  ) {
-    let mitad = Math.floor(inicio + final / 2);
-    if (inicio > final) {
-      return -1;
-    }
-    if (array[mitad] === elemento) {
-      return mitad;
-    } else {
-      if (array[mitad] < elemento) {
-        return binarySearch(array, elemento, mitad + 1, final);
-      } else {
-        return binarySearch(array, elemento, inicio, mitad - 1);
-      }
-    }
-  };
+var binarySearch = function (){};
 
 // EJERCICIO 10
 // Implementar la función countArray: a partir de un array en el cual cada posición puede ser un único
@@ -346,14 +190,7 @@ var binarySearch = function (
 //    countArray(array); --> Debería devolver 28 (1 + 2 + 3 + 4 + 5 + 6 + 7)
 // Pista: utilizar el método Array.isArray() para determinar si algun elemento de array es un array anidado
 // [Para más información del método: https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Array/isArray]
-var countArray = function(array) {
-    let arraySinAnidar = array.flat(Infinity);
-    let suma = 0;
-    for (let i = 0; i < arraySinAnidar.length; i++) {
-      suma = suma + arraySinAnidar[i];
-    }
-    return suma;
-  }; 
+var countArray = function(array) {}; 
 
 // ----------------------
 
