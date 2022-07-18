@@ -146,7 +146,7 @@ LinkedList.prototype.removeFromPos = function (pos) {};
 //Los requisitos que debe cumplir son:
 // - Ser mayor de 18 años (18 inclusive es válido)
 // - Tener datos que corresponda con el curso
-// - Que no se haya registrado ya otra persona al curso con ese mismo número de documento.
+// - Que no se haya registrado ya otra persona al curso con ese mismo número de telefono.
 // Finalmente la función debe devolver un arreglo con todos los nombres de las personas que pudieron ingresar
 // Importante!: Aquellas personas que no cumplan con los requisitos para ingresar deben ser removidos de la cola
 
